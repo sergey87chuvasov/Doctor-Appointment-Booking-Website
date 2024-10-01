@@ -2,9 +2,11 @@ import validator from 'validator';
 import bcrypt from 'bcrypt';
 import { v2 as cloudinary } from 'cloudinary';
 import doctorModel from '../models/doctorModel.js';
+import jwt from 'jsonwebtoken';
 
 // api for add doctor
 const addDoctor = async (req, res) => {
+  console.log('Uploaded file:', req.file); // Логируйте информацию о загруженном файле
   try {
     const {
       name,
@@ -17,9 +19,8 @@ const addDoctor = async (req, res) => {
       fees,
       address,
     } = req.body;
-    const imageFile = req.file;
 
-    // check for all data to add doctor
+    const imageFile = req.file;
 
     if (
       !name ||
@@ -85,4 +86,25 @@ const addDoctor = async (req, res) => {
   }
 };
 
-export { addDoctor };
+// api for admin login
+
+const loginAdmin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (
+      email === process.env.ADDMIN_EMAIL &&
+      password === process.env.ADMIN_PASSWORD
+    ) {
+      const token = jwt.sign(email + password, process.env.JWT_SECRET);
+      res.json({ success: true, token });
+    } else {
+      res.json({ success: false, message: 'Invalid credentials' });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export { addDoctor, loginAdmin };
