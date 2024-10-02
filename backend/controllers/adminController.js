@@ -6,7 +6,6 @@ import jwt from 'jsonwebtoken';
 
 // api for add doctor
 const addDoctor = async (req, res) => {
-  console.log('Uploaded file:', req.file); // Логируйте информацию о загруженном файле
   try {
     const {
       name,
