@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { assets } from '../assets/assets';
 import { useContext } from 'react';
 import { AdminContext } from '../context/AdminContext';
 import axios from 'axios';
