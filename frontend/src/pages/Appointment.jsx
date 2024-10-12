@@ -22,7 +22,7 @@ const Appointment = () => {
   const fetchDocInfo = async () => {
     const docInfo = doctors.find((doc) => doc._id === docId);
     setDocInfo(docInfo);
-    console.log(docInfo);
+    // console.log(docInfo);
   };
 
   const getAvailableSlots = async () => {
