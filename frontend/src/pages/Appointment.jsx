@@ -22,7 +22,7 @@ const Appointment = () => {
   const fetchDocInfo = async () => {
     const docInfo = doctors.find((doc) => doc._id === docId);
     setDocInfo(docInfo);
-    // console.log(docInfo);
+    console.log(docInfo);
   };
 
   const getAvailableSlots = async () => {
@@ -66,12 +66,17 @@ const Appointment = () => {
 
         const slotDate = day + '_' + month + '_' + year;
         const slotTime = formattedTime;
+        // console.log(slotDate);
+        // console.log(slotTime);
 
         const isSlotAvailable =
           docInfo.slots_booked[slotDate] &&
           docInfo.slots_booked[slotDate].includes(slotTime)
             ? false
             : true;
+
+        // console.log(isSlotAvailable);
+        // console.log(docInfo.slots_booked[slotDate]);
 
         if (isSlotAvailable) {
           // add slot to array
