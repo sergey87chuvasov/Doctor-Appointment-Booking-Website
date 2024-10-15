@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { AdminContext } from '../context/AdminContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { DoctorContext } from '../context/DoctorContext';
 
 const Login = () => {
   const [state, setState] = useState('Admin');
@@ -10,6 +11,7 @@ const Login = () => {
   const { setAToken, backendUrl } = useContext(AdminContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setDToken } = useContext(DoctorContext);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -27,6 +29,11 @@ const Login = () => {
         } else {
           toast.error(data.message);
         }
+      } else {
+        const { data } = await axios.post(backendUrl + '/api/doctor/login', {
+          email,
+          password,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -66,7 +73,7 @@ const Login = () => {
           <p>
             Doctor Login?{' '}
             <span
-              onChange={() => setState('Doctor')}
+              onClick={() => setState('Doctor')}
               className='text-primary underline cursor-pointer'
             >
               Click here
