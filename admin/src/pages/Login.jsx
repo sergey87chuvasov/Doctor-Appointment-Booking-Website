@@ -34,6 +34,14 @@ const Login = () => {
           email,
           password,
         });
+
+        if (data.success) {
+          localStorage.setItem('dToken', data.token);
+          setDToken(data.token);
+          console.log(data.token);
+        } else {
+          toast.error(data.message);
+        }
       }
     } catch (error) {
       console.log(error);
