@@ -12,6 +12,7 @@ const DoctorContextProvider = (props) => {
   );
 
   const [appointments, setAppointments] = useState([]);
+  const [dashData, setDashData] = useState(false);
 
   const getAppointments = async () => {
     try {
@@ -73,6 +74,11 @@ const DoctorContextProvider = (props) => {
       toast.error(error.message);
     }
   };
+
+  const getDashData = async () => {
+    try {}
+    catch(){}
+  }
 
   const value = {
     dToken,
