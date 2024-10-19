@@ -50,7 +50,7 @@ const DoctorContextProvider = (props) => {
         toast.error(data.message);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error.message);
     }
   };
@@ -76,9 +76,22 @@ const DoctorContextProvider = (props) => {
   };
 
   const getDashData = async () => {
-    try {}
-    catch(){}
-  }
+    try {
+      const { data } = await axios.get(backendUrl + '/api/doctor/dashboard', {
+        headers: { dToken },
+      });
+
+      if (data.success) {
+        setDashData(data.dashData);
+        console.log(data.dashData);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
 
   const value = {
     dToken,
@@ -89,6 +102,9 @@ const DoctorContextProvider = (props) => {
     getAppointments,
     completeAppointment,
     cancelAppointment,
+    dashData,
+    setDashData,
+    getDashData,
   };
 
   return (

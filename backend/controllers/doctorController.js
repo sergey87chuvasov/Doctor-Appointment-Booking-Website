@@ -134,7 +134,7 @@ const doctorDashboard = async (req, res) => {
 
     appointments.map((item) => {
       if (!patients.includes(item.userId)) {
-        patients.push();
+        patients.push(item.userId);
       }
     });
 
