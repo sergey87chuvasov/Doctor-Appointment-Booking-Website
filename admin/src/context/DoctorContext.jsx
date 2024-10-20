@@ -102,7 +102,7 @@ const DoctorContextProvider = (props) => {
 
       if (data.success) {
         setProfileData(data.profileData);
-        console.log(data.profileData);
+        // console.log(data.profileData);
       }
     } catch (error) {
       console.log(error);
